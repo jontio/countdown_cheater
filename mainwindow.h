@@ -33,6 +33,8 @@ private slots:
     void startclock();
     void solve();
 
+    void probtest();
+
 private:
     Ui::MainWindow *ui;
     double wanted_number;

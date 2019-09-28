@@ -16,6 +16,10 @@ I was looking to create an algorithm that would reduce a problem of to numbers i
 things to try=(((number of operations)/2)^(n-1))*(((n!)^2)/n)
 ```
 
+\[
+\text{things to try}=\left(\frac{\text{number of operations}}{2}\right)^{(n-1)}\frac{(n!)^2}{n}
+\]
+
 For Countdown 'n=6' and `number of operations=6` and the number of things to try are `things to try=20,995,200`. Clearly this is a big number and explains why I have never seen an episode where Rachel can't solve the problem. The random desired number can only hide between 1 and 999, there is simply very little space in which the random desired number can hide. Obviously there's going to be a lot of repeated numbers but for 21 million numbers but still it seems unlikely that the wanted random number is not going to be in one of these 21 million numbers especially considering the other random numbers are all around the 1 to 100 range.  Anyway I digress. Computer power wise 21 million numbers is a tiny thing to compute so I wrote the following code that reduces a vector of size `n` to `n-1`...
 
 ```C++
@@ -129,9 +133,33 @@ Another pointless interesting thing I noticed was that `(((n!)^2)/n)` for `n=6` 
 
 Anyway here you go, the perfect ways to cheat at the arithmetic part of countdown. Hopefully at the very least it will give people a chuckle as the clock counts down.
 
-##  Compiling
+## Monte Carlo simulations
 
-It's written with C++ and QT. I didn't spend much time figuring out the bugs but with the clock animation I had to change bits and pieces when running on Linux compared to when running on Windows. The current source file in the repository are the settings that gave the fewest bugs on Linux. If I find some time I'll merge the two versions to this repo.
+OK, I had to figure out the probabilities that for a given game it is unsolvable. As far as I'm aware the rules that the numbers are randomly selected from two sets; a small and a big set. The desired random number is an integer between 1 and 999. There are four numbers in the big set and 20 numbers in the small set. I believe below are the sets used...
+
+```
+big_set={25 , 50 , 75 , 100}
+small_set={1 , 1 , 2 , 2 , 3 , 3 , 4 , 4 , 5 , 5 , 6 , 6 , 7 , 7 , 8 , 8 , 9 , 9 , 10 , 10}
+wanted_random_number=[1,999]
+```
+
+The contestants can choose between zero and four for the big set. Running Monte Carlo simulations for the number of big numbers the contestant chooses I got the following where the percentage shows the probability that a game cannot be solved...
+
+| Number of bigs |  Probability of impossibility to solve  |
+|----------------|:---------------------------------------:|
+| 0              | 14.4%                                   |
+| 1              | 2.4%                                    |
+| 2              | 2.1%                                    |
+| 3              | 5.2%                                    |
+| 4              | 8.9%                                    |
+
+The percentages should be accurate to their given precision. Sean lock is a regular contestant on the show (Well at least for 8/10 cats does countdown). Sean always says to Rachel, "the usual". Sean's usual is always two big numbers. So, when he does this he actually has the highest probability that there exists a solution. I am guessing he knows this, and is the reason why he chooses two big numbers. At that rate I would have to watch over 50 games to see one that wasn't possible to solve.
+
+If you change the rules such that the numbers are not drawn from the big and small set but rather any number between 1 and 999 with equally probability and duplicates being allowable, then the probability that there is no solution becomes 6.3%.
+
+## Compiling
+
+It's written with C++ and QT. I didn't spend much time figuring out the bugs but with the clock animation I had to change bits and pieces when running on Linux compared to when running on Windows.
 
 Jonti 2019
 
