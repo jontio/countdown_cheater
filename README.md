@@ -15,12 +15,11 @@ I was looking to create an algorithm that would reduce a problem of to numbers i
 ```
 things to try=(((number of operations)/2)^(n-1))*(((n!)^2)/n)
 ```
-
 \[
 \text{things to try}=\left(\frac{\text{number of operations}}{2}\right)^{(n-1)}\frac{(n!)^2}{n}
 \]
 
-For Countdown 'n=6' and `number of operations=6` and the number of things to try are `things to try=20,995,200`. Clearly this is a big number and explains why I have never seen an episode where Rachel can't solve the problem. The random desired number can only hide between 1 and 999, there is simply very little space in which the random desired number can hide. Obviously there's going to be a lot of repeated numbers but for 21 million numbers but still it seems unlikely that the wanted random number is not going to be in one of these 21 million numbers especially considering the other random numbers are all around the 1 to 100 range.  Anyway I digress. Computer power wise 21 million numbers is a tiny thing to compute so I wrote the following code that reduces a vector of size `n` to `n-1`...
+For Countdown 'n=6' and `number of operations=6` and the number of things to try are `things to try=20,995,200`. Clearly this is a big number and explains why I have never seen an episode where Rachel can't solve the problem. The random desired number can only hide between 1 and 999, there is simply very little space in which the random desired number can hide. Obviously there's going to be a lot of repeated numbers and fractions but with 21 million numbers it still seems unlikely that the wanted random number is not going to be in one of these 21 million numbers especially considering the other random numbers are all around the 1 to 100 range.  Anyway I digress. Computer power wise 21 million numbers is a tiny thing to compute so I wrote the following code that reduces a vector of size `n` to `n-1`...
 
 ```C++
 void Number_Cheater::vector_work(const QVector<double> &vec)
